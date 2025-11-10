@@ -1,4 +1,5 @@
-import Script from 'next/script';
+import Script from "next/script";
+
 import "./globals.css"; // globals.css를 import 합니다.
 
 export const metadata = {
