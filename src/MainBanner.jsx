@@ -2,11 +2,10 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-
 const MainBanner = () => {
   return (
     // ✅ 수정: 여기에 'mx-8' (좌우 여백) 추가
-    <section className="h-[80vh] bg-gray-50 mx-8">
+    <section className="h-[80vh] bg-gray-50 px-8">
       <div className="container mx-auto py-8">
         <article className="flex flex-row items-center justify-between gap-3 bg-gradient-to-r from-[#3B8DFF] to-[#B8D5FF] rounded-2xl p-12 ">
           <div className=" flex flex-col gap-2 ">
