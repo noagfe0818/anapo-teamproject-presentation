@@ -46,7 +46,7 @@ const Button = ({
   [key: string]: any;
 }) => (
   <button
-    className={`px-4 py-2 rounded font-medium transition-colors bg-blue-600 text-white hover:bg-blue-700 ${className}`}
+    className={`px-4 py-2 rounded font-medium transition-colors bg-[#5CA0FF] text-white hover:bg-blue-600 ${className}`}
     {...props}
   >
     {children}
@@ -256,7 +256,7 @@ function Chat() {
     // ✅ 수정 1: padding(p-4 md:p-8) 제거, h-full 추가
     <div className="max-w-4xl mx-auto h-full pt-15">
       {/* ✅ 수정 2: 'h-[700px]' -> 'h-full'로 변경 */}
-      <Card className="h-full flex flex-col rounded-xl shadow-xl shadow-black/20">
+      <Card className="h-full flex flex-col rounded-xl shadow-xl ">
         <CardHeader className="border-b border-gray-100 p-4 shrink-0 bg-white rounded-t-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -287,9 +287,6 @@ function Chat() {
             <div className="flex items-center space-x-2">
               <Button variant="ghost" size="icon">
                 <Phone className="h-4 w-4" />
-              </Button>
-              <Button variant="ghost" size="icon">
-                <Video className="h-4 w-4" />
               </Button>
             </div>
           </div>
@@ -326,7 +323,7 @@ function Chat() {
                     <div
                       className={`rounded-lg px-3 py-2 ${
                         message.sender === "user"
-                          ? "bg-blue-600 text-white"
+                          ? "bg-[#5CA0FF] text-white"
                           : "bg-gray-100 text-gray-900"
                       }`}
                     >
