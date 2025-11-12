@@ -170,7 +170,7 @@ export default function FindHospitalPage() {
               <select
                 value={selectedSpecialty}
                 onChange={(e) => setSelectedSpecialty(e.target.value)}
-                className="w-full px-3 py-2 border rounded-lg text-gray-900"
+                className="w-full px-3 py-2 bg-gray-50 rounded-lg text-gray-900"
               >
                 {specialties.map((s) => (
                   // ✅ 옵션 글씨 색상 수정
@@ -184,7 +184,7 @@ export default function FindHospitalPage() {
                 ))}
               </select>
             </div>
-            <div className="flex-1 overflow-y-auto space-y-3 pr-2">
+            <div className="flex-1 overflow-y-auto space-y-3 ">
               {filteredHospitals.map((hospital) => (
                 <div
                   key={hospital.id}
