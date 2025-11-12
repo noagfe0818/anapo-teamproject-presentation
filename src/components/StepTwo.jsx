@@ -49,7 +49,7 @@ const StepTwo = ({
           </div>
         </div>
 
-        <div className="flex justify-between mt-6">
+        <div className="flex justify-between mt-6 container mx-auto">
           <Button variant="outline" onClick={() => setStep(1)}>
             이전
           </Button>
