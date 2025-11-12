@@ -1,50 +1,26 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Send, Paperclip, Phone, Video, MoreVertical } from "lucide-react";
+import { Send, Paperclip, Phone } from "lucide-react";
 import Image from "next/image";
 
-// --- 1. 임시 UI 컴포넌트들 (수정 안 함) ---
-const Card = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => <div className={`bg-white ${className}`}>{children}</div>;
-const CardHeader = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => <div className={`p-4 border-b ${className}`}>{children}</div>;
-const CardContent = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => <div className={`p-4 ${className}`}>{children}</div>;
+// --- 임시 UI 컴포넌트들 ---
+const Card = ({ children, className }: any) => (
+  <div className={`bg-white ${className}`}>{children}</div>
+);
+const CardHeader = ({ children, className }: any) => (
+  <div className={`p-4 border-b ${className}`}>{children}</div>
+);
+const CardContent = ({ children, className }: any) => (
+  <div className={`p-4 ${className}`}>{children}</div>
+);
 const Input = (props: React.InputHTMLAttributes<HTMLInputElement>) => (
   <input
     className={`border rounded px-3 py-2 w-full ${props.className}`}
     {...props}
   />
 );
-const Button = ({
-  children,
-  className,
-  variant,
-  size,
-  ...props
-}: {
-  children: React.ReactNode;
-  className?: string;
-  variant?: string;
-  size?: string;
-  [key: string]: any;
-}) => (
+const Button = ({ children, className, ...props }: any) => (
   <button
     className={`px-4 py-2 rounded font-medium transition-colors bg-[#5CA0FF] text-white hover:bg-blue-600 ${className}`}
     {...props}
@@ -52,90 +28,38 @@ const Button = ({
     {children}
   </button>
 );
-const Avatar = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
+const Avatar = ({ children, className }: any) => (
   <div
     className={`relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full ${className}`}
   >
     {children}
   </div>
 );
-
 const AvatarImage = (props: React.ComponentProps<typeof Image>) => {
   const { alt, ...rest } = props;
   return <Image className="aspect-square h-full w-full" alt={alt} {...rest} />;
 };
-
-const AvatarFallback = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
+const AvatarFallback = ({ children, className }: any) => (
   <span
     className={`flex h-full w-full items-center justify-center rounded-full bg-gray-100 ${className}`}
   >
     {children}
   </span>
 );
-const Badge = ({
-  children,
-  className,
-  variant,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  variant?: string;
-}) => (
+const Badge = ({ children, className }: any) => (
   <div
     className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors ${className}`}
   >
     {children}
   </div>
 );
-const ScrollArea = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
+const ScrollArea = ({ children, className }: any) => (
   <div className={`relative h-full overflow-y-auto ${className}`}>
     {children}
   </div>
 );
-const DropdownMenu = ({ children }: { children: React.ReactNode }) => (
-  <div className="relative inline-block text-left">{children}</div>
-);
-const DropdownMenuTrigger = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => <div className={className}>{children}</div>;
-const DropdownMenuContent = ({ children }: { children: React.ReactNode }) => (
-  <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-    {children}
-  </div>
-);
-const DropdownMenuItem = ({ children }: { children: React.ReactNode }) => (
-  <a
-    href="#"
-    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-  >
-    {children}
-  </a>
-);
 
-// --- 2. 채팅 기능 코드 ---
-// ... (이전과 동일, 생략) ...
+// --- 채팅 기능 코드 ---
 interface Message {
   id: string;
   content: string;
@@ -150,6 +74,7 @@ interface Agent {
   status: "online" | "offline" | "busy";
   avatar: string;
 }
+
 const mockAgent: Agent = {
   id: "1",
   name: "이지은 상담사",
@@ -157,6 +82,7 @@ const mockAgent: Agent = {
   status: "online",
   avatar: "https://images.unsplash.com/photo-1626863905121-3b0c0ed7b94c?w=300",
 };
+
 const initialMessages: Message[] = [
   {
     id: "1",
@@ -181,21 +107,6 @@ const initialMessages: Message[] = [
     timestamp: "14:23",
     type: "text",
   },
-  {
-    id: "4",
-    content: "네, 예약번호는 A1234이고, 순천향대학교 부천병원입니다.",
-    sender: "user",
-    timestamp: "14:24",
-    type: "text",
-  },
-  {
-    id: "5",
-    content:
-      "확인 감사합니다. 잠시만 기다려주시면 예약 내역 조회 후 안내드리겠습니다.",
-    sender: "agent",
-    timestamp: "14:25",
-    type: "text",
-  },
 ];
 
 function Chat() {
@@ -203,6 +114,21 @@ function Chat() {
   const [newMessage, setNewMessage] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // 파일 입력창
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      console.log("선택된 파일:", file.name);
+      // 여기에 파일 업로드 로직 추가 가능
+    }
+  };
+
+  const handleFileButtonClick = () => {
+    fileInputRef.current?.click(); // 숨겨진 input 클릭
+  };
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -247,16 +173,16 @@ function Chat() {
       handleSendMessage();
     }
   };
+
   const getStatusColor = (status: string) =>
     status === "online" ? "bg-green-500" : "bg-gray-500";
   const getStatusText = (status: string) =>
     status === "online" ? "상담 가능" : "오프라인 ";
 
   return (
-    // ✅ 수정 1: padding(p-4 md:p-8) 제거, h-full 추가
     <div className="max-w-4xl mx-auto h-full pt-15">
-      {/* ✅ 수정 2: 'h-[700px]' -> 'h-full'로 변경 */}
-      <Card className="h-full flex flex-col rounded-xl shadow-xl ">
+      <Card className="h-full flex flex-col rounded-xl shadow-md">
+        {/* --- 상담사 정보 헤더 --- */}
         <CardHeader className="border-b border-gray-100 p-4 shrink-0 bg-white rounded-t-xl">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -279,19 +205,18 @@ function Chat() {
               <div>
                 <h3 className="font-medium text-gray-800">{mockAgent.name}</h3>
                 <p className="text-sm text-gray-800">{mockAgent.department}</p>
-                <Badge variant="secondary" className="text-xs text-gray-800">
+                <Badge className="text-xs text-gray-800">
                   {getStatusText(mockAgent.status)}
                 </Badge>
               </div>
             </div>
-            <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="icon">
-                <Phone className="h-4 w-4" />
-              </Button>
-            </div>
+            <Button variant="ghost" size="icon">
+              <Phone className="h-4 w-4" />
+            </Button>
           </div>
         </CardHeader>
 
+        {/* --- 채팅 메시지 영역 --- */}
         <CardContent className="flex-1 p-0 overflow-hidden">
           <ScrollArea className="h-full p-4">
             <div className="space-y-4">
@@ -374,20 +299,38 @@ function Chat() {
           </ScrollArea>
         </CardContent>
 
+        {/* --- 입력창 & 버튼 --- */}
         <div className="border-t border-gray-100 p-4 shrink-0 bg-white rounded-b-xl">
           <div className="flex items-center space-x-2">
-            <Button variant="ghost" size="icon">
+            {/* 숨겨진 파일 입력창 */}
+            <input
+              type="file"
+              ref={fileInputRef}
+              style={{ display: "none" }}
+              onChange={handleFileSelect}
+            />
+
+            {/* 파일 첨부 버튼 */}
+            <Button variant="ghost" size="icon" onClick={handleFileButtonClick}>
               <Paperclip className="h-4 w-4" />
             </Button>
-            <Input
-              value={newMessage}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setNewMessage(e.target.value)
-              }
-              onKeyPress={handleKeyPress}
-              placeholder="메시지를 입력하세요..."
-              className="flex-1 text-gray-900"
-            />
+
+            {/* 메시지 입력 */}
+            <div
+              className="flex-1 bg-gray-100 rounded-full flex items-center px-4 py-2 
+            focus-within:ring-2 focus-within:ring-blue-400 transition"
+            >
+              <input
+                type="text"
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder="메시지를 입력하세요..."
+                className="flex-1 bg-transparent border-none focus:outline-none text-gray-900 placeholder-gray-500"
+              />
+            </div>
+
+            {/* 전송 버튼 */}
             <Button onClick={handleSendMessage} disabled={!newMessage.trim()}>
               <Send className="h-4 w-4" />
             </Button>
@@ -398,16 +341,10 @@ function Chat() {
   );
 }
 
-// --- 3. 최종 페이지 ---
+// --- 최종 페이지 ---
 export default function FaqPage() {
-  const HEADER_HEIGHT_PX = 64; // (h-16)
-
+  const HEADER_HEIGHT_PX = 64;
   return (
-    // ✅ 수정 3:
-    // 1. style 제거
-    // 2. h-dvh, overflow-hidden 추가
-    // 3. pt-16 (헤더 높이)
-    // 4. p-4 md:p-8 (채팅창 좌우/상하 여백)
     <main
       className="bg-gray-50 h-dvh overflow-hidden pt-16 p-4 md:p-8"
       style={{ height: `calc(100vh - ${HEADER_HEIGHT_PX}px)` }}
