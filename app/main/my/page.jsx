@@ -36,6 +36,12 @@ const My = () => {
       date: "2024.01.10 10:00",
       status: "진료완료",
     },
+    {
+      hospital: "부천성모병원",
+      doctor: "이민정 과장 · 피부과",
+      date: "2024.01.10 10:00",
+      status: "진료완료",
+    },
   ];
 
   const favoriteHospitals = [
@@ -45,9 +51,9 @@ const My = () => {
   ];
 
   return (
-    <section className="min-h-screen bg-gray-50 py-10">
+    <section className="min-h-screen bg-gray-50 py-10 pt-20">
       <div className="container mx-auto px-6">
-        <h1 className="mb-8 p-16  flex flex-col w-full justify-center h-[100px] rounded-2xl bg-white text-[20px] text-gray-600 font-semibold shadow ">
+        <h1 className="mb-5  flex flex-col w-full justify-center  text-gray-600 font-semibold  ">
           마이페이지
           <p className="text-gray-500 mb-2 text-[16px] font-light">
             회원 정보와 예약 내역을 확인하고 관리하세요.
@@ -95,9 +101,9 @@ const My = () => {
         </div>
 
         {/* 예약 내역 + 즐겨찾는 병원 */}
-        <div className="grid md:grid-cols-2 gap-6 mb-8">
+        <div className="grid md:grid-cols-2 gap-6 mb-8 w-full h-full ">
           {/* 최근 예약 내역 */}
-          <div className="bg-white rounded-2xl shadow p-6">
+          <div className="bg-white rounded-2xl shadow p-6 w-full  relative">
             <div className="flex items-center gap-2 mb-4">
               <CalendarDays size={20} />
               <h2 className="font-semibold">최근 예약 내역</h2>
@@ -105,7 +111,7 @@ const My = () => {
             {recentReservations.map((r, i) => (
               <div
                 key={i}
-                className="border rounded-xl p-4 mb-3 flex justify-between items-center"
+                className="bg-gray-50 rounded-xl p-4 mb-3 flex justify-between items-center"
               >
                 <div>
                   <p className="font-semibold">{r.hospital}</p>
@@ -123,13 +129,13 @@ const My = () => {
                 </span>
               </div>
             ))}
-            <button className="w-full mt-2 py-2 border rounded-lg text-sm text-gray-600 hover:bg-gray-50">
-              새 예약하기
+            <button className="w-full  py-2 border border-gray-200 shadow-sm rounded-lg text-sm text-gray-600 hover:bg-gray-50">
+              더보기
             </button>
           </div>
 
           {/* 즐겨찾는 병원 */}
-          <div className="bg-white rounded-2xl shadow p-6">
+          <div className="bg-white rounded-2xl shadow p-6 relative">
             <div className="flex items-center gap-2 mb-4">
               <Heart size={20} />
               <h2 className="font-semibold">즐겨찾는 병원</h2>
@@ -137,7 +143,7 @@ const My = () => {
             {favoriteHospitals.map((h, i) => (
               <div
                 key={i}
-                className="border rounded-xl p-4 mb-3 flex justify-between"
+                className=" bg-gray-50 rounded-xl p-4 mb-3 flex justify-between"
               >
                 <div>
                   <p className="font-semibold">{h.name}</p>
@@ -146,21 +152,13 @@ const My = () => {
                 <span className="text-gray-400 text-sm">{h.distance}</span>
               </div>
             ))}
-            <button className="w-full mt-2 py-2 border rounded-lg text-sm text-gray-600 hover:bg-gray-50">
-              병원 찾기
+            <button className=" w-full  py-2 border border-gray-200 shadow-sm rounded-lg text-sm text-gray-600 hover:bg-gray-50">
+              더보기
             </button>
           </div>
         </div>
 
         {/* 빠른 메뉴 */}
-        <div className="bg-white rounded-2xl shadow p-6">
-          <div className="grid grid-cols-4 gap-4">
-            <QuickMenu icon={<ClipboardList />} text="예약하기" />
-            <QuickMenu icon={<Headphones />} text="상담하기" />
-            <QuickMenu icon={<Settings />} text="설정" />
-            <QuickMenu icon={<Heart />} text="고객지원" />
-          </div>
-        </div>
       </div>
     </section>
   );
