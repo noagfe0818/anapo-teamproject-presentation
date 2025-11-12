@@ -14,7 +14,7 @@ const StepOne = ({
     <Card>
       <CardHeader>
         <CardTitle>의사 선택</CardTitle>
-        <div className="text-sm text-blue-600 bg-blue-50 p-3 rounded-lg mt-2">
+        <div className="text-sm text-[#5CA0FF] bg-blue-50 p-3 rounded-lg mt-2">
           📍 <strong>{selectedHospital.name}</strong>
         </div>
       </CardHeader>
@@ -23,7 +23,7 @@ const StepOne = ({
           filteredDoctors.map((doc) => (
             <div
               key={doc.id}
-              className="flex items-center p-4 border rounded-lg hover:bg-gray-50 cursor-pointer mb-3"
+              className="flex items-center p-4 shadow-sm rounded-lg hover:bg-blue-50 cursor-pointer mb-3"
               onClick={() => {
                 setSelectedDoctor(doc);
                 setStep(2);
@@ -41,7 +41,6 @@ const StepOne = ({
                 <h3 className="font-semibold text-gray-800">{doc.name}</h3>
                 <p className="text-sm text-gray-600">{doc.specialty}</p>
               </div>
-              <Badge>{doc.specialty}</Badge>
             </div>
           ))
         ) : (
