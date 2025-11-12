@@ -13,12 +13,28 @@ const Page = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [date, setDate] = useState("");
 
+  // ✅ 추가: 체크박스 상태 관리
+  const [agreements, setAgreements] = useState({
+    terms: false,
+    privacy: false,
+    marketing: false,
+  });
+
   const router = useRouter(); // <--- 2. 라우터 준비
+  // ✅ 체크박스 변경 핸들러
+  const handleAgreementChange = (e) => {
+    const { name, checked } = e.target;
+    setAgreements((prev) => ({ ...prev, [name]: checked }));
+  };
 
   // ✅ 3. handleSubmit 함수에서 TypeScript 타입 제거 (e: React.FormEvent -> e)
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    // ✅ 필수 항목 체크 확인
+    if (!agreements.terms || !agreements.privacy) {
+      alert("필수 약관에 모두 동의해야 회원가입이 가능합니다.");
+      return;
+    }
     // 폼 검증 (비밀번호 일치 확인 등)
     if (password !== confirmPassword) {
       alert("비밀번호가 일치하지 않습니다.");
@@ -170,26 +186,59 @@ const Page = () => {
               </div>
               <div className="mt-8 flex flex-col gap-1">
                 <label className="flex items-center flex-row gap-2 text-gray-600">
-                  <input type="checkbox" className="accent-[#5CA0FF]" />
-                  <span>이용약관에 동의합니다</span>
+                  <input
+                    type="checkbox"
+                    name="terms"
+                    checked={agreements.terms}
+                    onChange={handleAgreementChange}
+                    className="accent-[#5CA0FF]"
+                  />
+                  <h4>
+                    이용약관에 동의합니다{" "}
+                    <span className="text-sm">(필수)</span>
+                  </h4>
                 </label>
+
                 <label className="flex items-center space-x-2 text-gray-600">
-                  <input type="checkbox" className="accent-[#5CA0FF]" />
-                  <span>개인정보 처리방침에 동의합니다</span>
+                  <input
+                    type="checkbox"
+                    name="privacy"
+                    checked={agreements.privacy}
+                    onChange={handleAgreementChange}
+                    className="accent-[#5CA0FF]"
+                  />
+                  <h4>
+                    개인정보 처리방침에 동의합니다{" "}
+                    <span className="text-sm">(필수)</span>
+                  </h4>
                 </label>
+
                 <label className="flex items-center space-x-2 text-gray-600">
-                  <input type="checkbox" className="accent-[#5CA0FF]" />
-                  <span>마케팅 정보 수신에 동의합니다 </span>
+                  <input
+                    type="checkbox"
+                    name="marketing"
+                    checked={agreements.marketing}
+                    onChange={handleAgreementChange}
+                    className="accent-[#5CA0FF]"
+                  />
+                  <h4>
+                    마케팅 정보 수신에 동의합니다{" "}
+                    <span className="text-sm">(선택)</span>
+                  </h4>
                 </label>
               </div>
 
               <button
                 type="submit"
-                className="w-[420px] rounded-lg p-2 bg-[#5CA0FF] mt-8 text-white text-lg"
+                className={`w-[420px] rounded-lg p-2 mt-8 text-white text-lg transition ${
+                  agreements.terms && agreements.privacy
+                    ? "bg-[#5CA0FF] hover:bg-[#4A8BE0]"
+                    : "bg-gray-300 "
+                }`}
+                disabled={!agreements.terms || !agreements.privacy}
               >
                 회원가입
               </button>
-
               <div className="flex justify-between items-center text-md text-gray-600 mt-8 ">
                 <span>이미 계정이 있으신 가요?</span>
                 <Link
