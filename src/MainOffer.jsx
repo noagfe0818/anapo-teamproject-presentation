@@ -3,7 +3,7 @@ import { Search, ArrowRight, Calendar, MessageCircle } from "lucide-react";
 
 const MainOffer = () => {
   return (
-    <section className="h-[80vh] bg-gray-50 px-8">
+    <section className="h-[80vh] bg-gray-50 px-8 pt-10 ">
       <div className="container mx-auto  py-8 ">
         <h1 className="flex flex-col gap-4 justify-center items-center text-3xl text-gray-900 font-bold mt-10">
           anapo가 제공하는 서비스 <br />

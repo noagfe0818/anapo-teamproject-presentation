@@ -33,7 +33,7 @@ const Button = ({
   ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement>) => (
   <button
-    className={`px-4 py-2 rounded font-medium transition-colors bg-blue-600 text-white hover:bg-blue-700 ${props.className}`}
+    className={`px-4 py-2 rounded font-medium transition-colors bg-[#5CA0FF] text-white hover:bg-blue-500 ${props.className}`}
     {...props}
   >
     {children}
@@ -124,10 +124,10 @@ export default function FindHospitalPage() {
   };
 
   return (
-    <div className="flex h-screen bg-gray-100 ">
-      <div className="w-full lg:w-[450px] shrink-0 bg-white overflow-y-auto shadow-lg p-4">
+    <div className="flex h-screen bg-gray-100">
+      <div className="w-full lg:w-[450px] flex-shrink-0 bg-white overflow-y-auto shadow-lg p-4 pt-10">
         {/* 헤더 부분 */}
-        <div className="flex items-center justify-between mb-4 shrink-0">
+        <div className="flex items-center justify-between mb-4 flex-shrink-0">
           {showDetail && selectedHospital ? (
             <>
               <button
@@ -154,7 +154,7 @@ export default function FindHospitalPage() {
         {/* 목록 뷰 */}
         {!showDetail ? (
           <>
-            <div className="space-y-4 mb-6 shrink-0">
+            <div className="space-y-4 mb-6 flex-shrink-0">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
                 {/* ✅ 검색창 placeholder 색상도 진하게 수정 */}
@@ -163,7 +163,7 @@ export default function FindHospitalPage() {
                   placeholder="병원명 또는 주소 검색"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 placeholder:text-gray-500 text-gray-900"
+                  className="pl-10 placeholder:text-gray-500 text-gray-900 bg-gray-50 p-2 rounded-lg w-full"
                 />
               </div>
               {/* ✅ 드롭다운 글씨 색상 수정 */}
@@ -189,7 +189,7 @@ export default function FindHospitalPage() {
                 <div
                   key={hospital.id}
                   onClick={() => handleHospitalSelect(hospital)}
-                  className="p-4 border rounded-lg hover:bg-blue-50 cursor-pointer"
+                  className="p-4 bg-gray-50 rounded-lg hover:bg-blue-50 cursor-pointer"
                 >
                   <div className="flex justify-between items-start mb-2">
                     {/* ✅ 병원 이름 글자 크기/색상 */}
@@ -266,7 +266,7 @@ export default function FindHospitalPage() {
                     {selectedHospital.specialties.map((s, i) => (
                       <span
                         key={i}
-                        className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full"
+                        className="px-3 py-1 bg-blue-100 text-[#5CA0FF] text-sm rounded-full"
                       >
                         {s}
                       </span>

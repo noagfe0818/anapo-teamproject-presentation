@@ -3,14 +3,18 @@ import React from "react";
 
 export function Card({ children, className = "" }) {
   return (
-    <div className={`bg-white border rounded-lg shadow-sm ${className}`}>
+    <div className={`bg-white  rounded-xl shadow-sm ${className}`}>
       {children}
     </div>
   );
 }
 
 export function CardHeader({ children, className = "" }) {
-  return <div className={`p-4 border-b ${className}`}>{children}</div>;
+  return (
+    <div className={`p-4 s border-b border-gray-50 shadow-xs  ${className}`}>
+      {children}
+    </div>
+  );
 }
 
 export function CardTitle({ children, className = "" }) {
@@ -18,5 +22,5 @@ export function CardTitle({ children, className = "" }) {
 }
 
 export function CardContent({ children, className = "" }) {
-  return <div className={`p-4 ${className}`}>{children}</div>;
+  return <div className={`p-4  ${className}`}>{children}</div>;
 }

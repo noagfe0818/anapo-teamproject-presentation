@@ -12,7 +12,7 @@ const Page = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [date, setDate] = useState("");
-  
+
   const router = useRouter(); // <--- 2. 라우터 준비
 
   // ✅ 3. handleSubmit 함수에서 TypeScript 타입 제거 (e: React.FormEvent -> e)
@@ -27,10 +27,10 @@ const Page = () => {
 
     try {
       // 4. '뇌' (API)에게 데이터를 전송
-      const response = await fetch('/api/auth/register', {
-        method: 'POST',
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: name,
@@ -46,12 +46,11 @@ const Page = () => {
       if (response.ok) {
         // 성공! (201status)
         alert("회원가입 성공! 로그인 페이지로 이동합니다.");
-        router.push('/main/login'); // 로그인 페이지로 이동
+        router.push("/main/login"); // 로그인 페이지로 이동
       } else {
         // 실패 (400, 409, 500 status)
         alert(data.message || "회원가입에 실패했습니다.");
       }
-
     } catch (error) {
       // fetch 자체가 실패한 경우 (네트워크 오류 등)
       console.error("폼 제출 네트워크 에러:", error);
@@ -60,7 +59,7 @@ const Page = () => {
   };
 
   return (
-    <section className="min-h-screen bg-gray-50 py-10">
+    <section className="min-h-screen bg-gray-50 pt-15">
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col justify-center items-center gap-3">
           <div className="p-3 bg-blue-100 rounded-2xl items-center">
@@ -154,7 +153,7 @@ const Page = () => {
                   <label className="   gap-3">생년월일</label>
                   <input
                     type="date"
-                    value={date} 
+                    value={date}
                     onChange={(e) => setDate(e.target.value)}
                     className="w-50 h-10 bg-gray-100 rounded-lg p-2"
                   />
@@ -184,8 +183,11 @@ const Page = () => {
                 </label>
               </div>
 
-              <button type="submit" className="w-[420px] rounded-lg p-2 bg-[#5CA0FF] mt-8 text-white text-lg">
-                  회원가입
+              <button
+                type="submit"
+                className="w-[420px] rounded-lg p-2 bg-[#5CA0FF] mt-8 text-white text-lg"
+              >
+                회원가입
               </button>
 
               <div className="flex justify-between items-center text-md text-gray-600 mt-8 ">
