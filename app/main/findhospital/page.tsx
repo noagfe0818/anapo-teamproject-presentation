@@ -2,10 +2,10 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Search, MapPin, Star, Phone, Clock, X } from "lucide-react";
+import { Search, MapPin, Star, Phone, Clock, X, ArrowLeft } from "lucide-react";
 import KakaoMap from "@/components/KakaoMap";
 import Image from "next/image";
-
+import Link from "next/link";
 // --- 타입 정의 ---
 interface Hospital {
   id: string;
@@ -125,9 +125,9 @@ export default function FindHospitalPage() {
 
   return (
     <div className="flex h-screen bg-gray-100">
-      <div className="w-full lg:w-[450px] flex-shrink-0 bg-white overflow-y-auto shadow-lg p-4 pt-10">
+      <div className="w-full lg:w-[450px] shrink-0 bg-white overflow-y-auto shadow-lg p-4 pt-8">
         {/* 헤더 부분 */}
-        <div className="flex items-center justify-between mb-4 flex-shrink-0">
+        <div className="flex items-center justify-between mb-4 shrink-0">
           {showDetail && selectedHospital ? (
             <>
               <button
@@ -135,7 +135,7 @@ export default function FindHospitalPage() {
                 className="flex items-center gap-2 text-gray-800 hover:text-gray-900"
               >
                 <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200">
-                  <X className="w-4 h-4" />
+                  <ArrowLeft className="w-4 h-4" />
                 </div>
                 <span className="font-semibold">뒤로</span>
               </button>
@@ -147,14 +147,22 @@ export default function FindHospitalPage() {
             </>
           ) : (
             // ✅ 병원 찾기 제목 색상
-            <h3 className="text-lg font-semibold text-gray-900">병원 찾기</h3>
+            <div className="flex flex-col gap-5">
+              <Link href={"/main"}>
+                {" "}
+                <ArrowLeft />
+              </Link>
+              <h3 className="text-lg font-semibold text-gray-900 ">
+                병원 찾기
+              </h3>
+            </div>
           )}
         </div>
 
         {/* 목록 뷰 */}
         {!showDetail ? (
           <>
-            <div className="space-y-4 mb-6 flex-shrink-0">
+            <div className="space-y-4 mb-6 shrink-0">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
                 {/* ✅ 검색창 placeholder 색상도 진하게 수정 */}
