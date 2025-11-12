@@ -21,7 +21,7 @@ const AppointmentBookingComponent = ({ selectedHospital, onBack }) => {
 
   if (!selectedHospital) {
     return (
-      <div className="p-8 text-center text-gray-500 bg-gray-50 min-h-screen">
+      <div className="p-8 pt-20 text-center text-gray-500 bg-gray-50 min-h-screen">
         병원 정보가 없습니다.
         <br /> 병원 찾기 페이지에서 먼저 병원을 선택해주세요.
       </div>
@@ -54,12 +54,12 @@ const AppointmentBookingComponent = ({ selectedHospital, onBack }) => {
               <React.Fragment key={label}>
                 <div
                   className={`flex items-center ${
-                    active ? "text-blue-600" : "text-gray-400"
+                    active ? "text-[#5CA0FF]" : "text-gray-400"
                   }`}
                 >
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                      active ? "bg-blue-600 text-white" : "bg-gray-200"
+                      active ? "bg-[#5CA0FF] text-white" : "bg-gray-200"
                     }`}
                   >
                     {stepNum}
