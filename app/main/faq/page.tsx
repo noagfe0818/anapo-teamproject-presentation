@@ -180,7 +180,7 @@ function Chat() {
     status === "online" ? "상담 가능" : "오프라인 ";
 
   return (
-    <div className="max-w-4xl mx-auto h-full pt-15">
+    <section className="max-w-4xl mx-auto h-full pt-15">
       <Card className="h-full flex flex-col rounded-xl shadow-md">
         {/* --- 상담사 정보 헤더 --- */}
         <CardHeader className="border-b border-gray-100 p-4 shrink-0 bg-white rounded-t-xl">
@@ -337,18 +337,14 @@ function Chat() {
           </div>
         </div>
       </Card>
-    </div>
+    </section>
   );
 }
 
 // --- 최종 페이지 ---
 export default function FaqPage() {
-  const HEADER_HEIGHT_PX = 64;
   return (
-    <main
-      className="bg-gray-50 h-dvh overflow-hidden pt-16 p-4 md:p-8"
-      style={{ height: `calc(100vh - ${HEADER_HEIGHT_PX}px)` }}
-    >
+    <main className="bg-gray-50 h-screen overflow-hidden pt-16 p-4 md:p-8">
       <Chat />
     </main>
   );
