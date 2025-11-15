@@ -1,7 +1,7 @@
 "use client";
 import React, { Suspense, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import AppointmentBookingComponent from "@/components/AppointmentBookingComponent";
+import AppointmentBookingComponent from "@/components/patient/AppointmentBookingComponent";
 import hospitalData from "@/data/hospitalData";
 
 function ReservationPageContent() {

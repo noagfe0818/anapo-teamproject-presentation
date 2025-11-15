@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 import { ChevronRight, ArrowLeft } from "lucide-react";
 import mockDoctors from "@/data/mockDoctors";
-import StepOne from "@/components/StepOne";
-import StepTwo from "@/components/StepTwo";
-import StepThree from "@/components/StepThree";
+import StepOne from "@/components/patient/StepOne";
+import StepTwo from "@/components/patient/StepTwo";
+import StepThree from "@/components/patient/StepThree";
 
 const AppointmentBookingComponent = ({ selectedHospital, onBack }) => {
   const [step, setStep] = useState(1);
